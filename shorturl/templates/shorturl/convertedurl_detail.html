@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<p><a href="{% url 'shorturl_list' %}">список</a></p>
+ 		<p><a href="{% url 'shorturl_redirect' object.id %}" target="_blank">{{object.original_url}}</a></p>
+ 		<p>{{object.get_shorturl}}</p>
+ 		<p>{{object.created_dt}}</p>
+ 		<p>{{object.redirect_count}}</p>
+ 		<p><a href="{% url 'shorturl_delete' object.id %}"  target="_blank">x</a></p>
+{% endblock content %}

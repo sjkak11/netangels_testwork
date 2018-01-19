@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send" class="btn btn-success" />
+</form>
+ <table class="table table-striped"><tbody>
+ 	{% for shorturl in object_list %}
+ 	<tr>
+ 		<td><a href="{% url 'shorturl_detail' shorturl.id %}" target="_blank">{{shorturl.id}}</a></td>
+ 		<td><a href="{% url 'shorturl_redirect' shorturl.id %}" target="_blank">{{shorturl.original_url}}</a></td>
+ 		<td>{{shorturl.get_shorturl}}</td>
+ 		<td>{{shorturl.created_dt}}</td>
+ 		<td>{{shorturl.redirect_count}}</td>
+ 		<td><a href="{% url 'shorturl_delete' shorturl.id %}"  target="_blank">x</a></td>
+ 	</tr>
+ 	{% endfor %}
+ </tbody></table>
+{% endblock content %}

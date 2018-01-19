@@ -1,0 +1,14 @@
+.DS_STORE
+.venv
+.idea
+.localstorage
+.module-cache
+.vscode
+*.pyc
+*.db
+*.orig
+*.rdb
+*.log
+*.pid
+__pycache__
+.env

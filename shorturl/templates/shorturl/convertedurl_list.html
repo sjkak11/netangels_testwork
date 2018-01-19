@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<p><a href="{% url 'home' %}">Главная</a></p>
+ <table class="table table-striped"><tbody>
+ 	{% for shorturl in object_list %}
+ 	<tr>
+ 		<td><a href="{% url 'shorturl_detail' shorturl.id %}" target="_blank">{{shorturl.id}}</a></td>
+ 		<td><a href="{% url 'shorturl_redirect' shorturl.id %}" target="_blank">{{shorturl.original_url}}</a></td>
+ 		<td>{{shorturl.get_shorturl}}</td>
+ 		<td>{{shorturl.created_dt}}</td>
+ 		<td>{{shorturl.redirect_count}}</td>
+ 		<td><a href="{% url 'shorturl_delete' shorturl.id %}"  target="_blank">x</a></td>
+ 	</tr>
+ 	{% endfor %}
+ </tbody></table>
+ {% if is_paginated %}
+    <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+                <a href="{{request.path}}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="{{request.path}}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+{% endblock content %}
